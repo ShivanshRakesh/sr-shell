@@ -1,6 +1,6 @@
 MODULE_DIR = modules
 INCLUDE_DIR = header_files
-OBJECT_DIR = obj
+OBJECT_DIR = modules
 CC = gcc 
 CFLAGS = -Wall -I$(INCLUDE_DIR)
 
