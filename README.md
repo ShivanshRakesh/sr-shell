@@ -1,5 +1,6 @@
 # SR-SHELL
 A linux shell written in C.
+_The SR in SR-SHELL comes from the initials of my name, just if you are curious..._
 
 ## Build Instructions
 Building the shell is simple.
