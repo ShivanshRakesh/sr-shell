@@ -3,7 +3,7 @@
 void display_init_dialogue(void)
 {
     ioctl(0, 21523, m);
-    printf("\n");
+    NEWLINE();
     PRINT_DASHED_LINE(m[1]);
     PRINT_INTRO_BANNER(m[1]);
     PRINT_DASHED_LINE(m[1]);

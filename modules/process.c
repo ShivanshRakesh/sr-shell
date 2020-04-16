@@ -22,13 +22,14 @@ void fork_and_execute(char **command_args)
     else
     {
         waitpid(child_pid, &stat_loc, WUNTRACED);
-        printf("\n");
-
+        NEWLINE();
         // if (WIFEXITED(stat_loc) && WEXITSTATUS(stat_loc) == 0){
         //     printf("Process exited normally.");
         // }
-        // if(WIFSIGNALED(stat_loc))
-        //     printf("\nSignal encountered: %d\n", WTERMSIG(stat_loc));
+
+        if(WIFSIGNALED(stat_loc))
+            NEWLINE();
+            // printf("\nSignal encountered: %d\n", WTERMSIG(stat_loc));
     }
 }
 

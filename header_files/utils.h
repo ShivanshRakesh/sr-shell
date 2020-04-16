@@ -16,5 +16,6 @@
 #include <process.h>
 
 #define CLRSCR() printf("\033[H\033[J")
+#define NEWLINE() printf("\n")
 
 #endif

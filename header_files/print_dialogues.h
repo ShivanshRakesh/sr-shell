@@ -14,7 +14,7 @@
     {                                  \
         printf("-");                   \
         if (!i)                        \
-            printf("\n");              \
+            NEWLINE();              \
     }                                  \
     printf("\033[0m");
 
@@ -31,7 +31,7 @@
     PRINT_DASHED_LINE(m[1]);                      \
     printf("%*s", ((n) + 42) / 2 + 12, END_NOTE); \
     PRINT_DASHED_LINE(m[1]);                      \
-    printf("\n");
+    NEWLINE();
 
 short m[4];
 
