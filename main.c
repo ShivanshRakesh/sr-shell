@@ -5,17 +5,28 @@
 #include <sys/wait.h>
 #include <sys/ioctl.h>
 #include <string.h>
-#include <limits.h>
-#include "intro.h"
+#include "print_dialogues.h"
+#include "prompt.h"
 
 #define CLRSCR() printf("\033[H\033[J")
-#define PROMPT_RIGHT "SR-SHELL\0"
 
-char *get_command()
+char *get_command(void)
 {
     ssize_t bufsize = 0;
     char *input;
-    getline(&input, &bufsize, stdin);
+    if (getline(&input, &bufsize, stdin) == -1)
+    {
+        if (feof(stdin))
+        {
+            display_end_note();
+            exit(EXIT_SUCCESS);
+        }
+        else
+        {
+            perror("readline");
+            exit(EXIT_FAILURE);
+        }
+    }
     return input;
 }
 
@@ -33,7 +44,8 @@ void get_and_parse_command(char **command_args)
     command_args[indx] = NULL;
 }
 
-void fork_and_execute(char **command_args){
+void fork_and_execute(char **command_args)
+{
     int stat_loc, status;
     pid_t child_pid, wait_res;
     child_pid = fork();
@@ -49,17 +61,12 @@ void fork_and_execute(char **command_args){
     }
 }
 
-void show_prompt()
+void interact_util(void)
 {
-    short m[4];
-    ioctl(0, 21523, m);
-    char *hostname;
-    if ((hostname = (char *)malloc(_SC_HOST_NAME_MAX)) != NULL)
-        gethostname(hostname, _SC_HOST_NAME_MAX);
-    short spacing = m[1] - 4 - strlen(getenv("USER")) - strlen(getenv("PWD")) - strlen(hostname);
-    printf("\033[1;32m%s@%s:\033[0;36m %s\033[0;32m%*s\n\033[1;36m> ", getenv("USER"), hostname, getenv("PWD"), spacing, PROMPT_RIGHT);
-    printf("\033[0m");
-    free(hostname);
+    char **command_args = malloc(_SC_NL_ARGMAX * sizeof(char *));
+    get_and_parse_command(command_args);
+    fork_and_execute(command_args);
+    free(command_args);
 }
 
 int main()
@@ -69,10 +76,7 @@ int main()
     while (1)
     {
         show_prompt();
-        char **command_args = malloc(64 * sizeof(char *));
-        get_and_parse_command(command_args);
-        fork_and_execute(command_args);
-        free(command_args);
+        interact_util();
     }
     return 0;
 }

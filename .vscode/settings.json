@@ -2,6 +2,12 @@
     "files.associations": {
         "*.js": "javascriptreact",
         "types.h": "c",
-        "intro.h": "c"
+        "intro.h": "c",
+        "stdio.h": "c",
+        "limits.h": "c",
+        "wait.h": "c",
+        "stdlib.h": "c",
+        "ioctl.h": "c",
+        "prompt.h": "c"
     }
 }
