@@ -27,9 +27,9 @@ void fork_and_execute(char **command_args)
         //     printf("Process exited normally.");
         // }
 
-        if(WIFSIGNALED(stat_loc))
+        if (WIFSIGNALED(stat_loc))
             NEWLINE();
-            // printf("\nSignal encountered: %d\n", WTERMSIG(stat_loc));
+        // printf("\nSignal encountered: %d\n", WTERMSIG(stat_loc));
     }
 }
 

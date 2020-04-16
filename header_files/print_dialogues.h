@@ -14,7 +14,7 @@
     {                                  \
         printf("-");                   \
         if (!i)                        \
-            NEWLINE();              \
+            NEWLINE();                 \
     }                                  \
     printf("\033[0m");
 
