@@ -1,8 +1,8 @@
-#include <../header_files/utils.h>
+#include <utils.h>
 
 char *get_command(void)
 {
-    ssize_t bufsize = 0;
+    size_t bufsize = 0;
     char *input;
     if (getline(&input, &bufsize, stdin) == -1)
     {

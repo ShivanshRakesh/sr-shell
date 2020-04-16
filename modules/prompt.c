@@ -1,4 +1,4 @@
-#include "../header_files/utils.h"
+#include <utils.h>
 
 char *get_git_branch(void)
 {

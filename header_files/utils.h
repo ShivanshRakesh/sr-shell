@@ -10,10 +10,10 @@
 #include <string.h>
 #include <signal.h>
 
-#include "prompt.h"
-#include "print_dialogues.h"
-#include "command.h"
-#include "process.h"
+#include <prompt.h>
+#include <print_dialogues.h>
+#include <command.h>
+#include <process.h>
 
 #define CLRSCR() printf("\033[H\033[J")
 
