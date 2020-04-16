@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/ioctl.h>
-#include "prompt.h"
+#include "../header_files/utils.h"
 
 char *get_git_branch(void)
 {

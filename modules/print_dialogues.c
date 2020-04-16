@@ -1,6 +1,4 @@
-#include <sys/ioctl.h>
-#include <stdio.h>
-#include "print_dialogues.h"
+#include "../header_files/utils.h"
 
 void display_init_dialogue(void)
 {
@@ -17,6 +15,6 @@ void display_init_dialogue(void)
 void display_end_note(void)
 {
     ioctl(0, 21523, m);
-    printf("\033[A\r");
+    // printf("\033[A\r");
     PRINT_END_NOTE(m[1]);
 }
