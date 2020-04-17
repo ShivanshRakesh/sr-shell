@@ -10,13 +10,15 @@
 #include <string.h>
 #include <signal.h>
 
-#include <prompt.h>
-#include <print_dialogues.h>
 #include <command.h>
+#include <history.h>
+#include <init.h>
+#include <print_dialogues.h>
 #include <process.h>
+#include <prompt.h>
 
 #define CLRSCR() printf("\033[H\033[J")
 #define NEWLINE() printf("\n")
-#define JAB_TAK_HAI_JAAN while(1)
+#define JAB_TAK_HAI_JAAN while(1)   // Language:Hindi; Alternative for:'Until Dead'; #justForFun
 
 #endif

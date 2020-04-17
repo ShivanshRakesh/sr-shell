@@ -22,7 +22,6 @@ void fork_and_execute(char **command_args)
     else
     {
         waitpid(child_pid, &stat_loc, WUNTRACED);
-        NEWLINE();
         // if (WIFEXITED(stat_loc) && WEXITSTATUS(stat_loc) == 0){
         //     printf("Process exited normally.");
         // }
@@ -38,6 +37,12 @@ void interact_util(void)
     show_prompt();
     char **command_args = malloc(_SC_NL_ARGMAX * sizeof(char *));
     get_and_parse_command(command_args);
-    fork_and_execute(command_args);
+
+    if (strcmp(command_args[0], "history") == 0)
+        show_history();
+    else
+        fork_and_execute(command_args);
+    
+    NEWLINE();
     free(command_args);
 }

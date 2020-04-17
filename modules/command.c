@@ -17,6 +17,12 @@ char *get_command(void)
             exit(EXIT_FAILURE);
         }
     }
+
+    if (input[strlen(input) - 1] == '\n')
+        input[strlen(input) - 1] = 0;
+
+    store_cmd_in_history(input);
+
     return input;
 }
 

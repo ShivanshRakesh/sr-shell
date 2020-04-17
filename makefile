@@ -7,7 +7,7 @@ CFLAGS = -Wall -I$(INCLUDE_DIR)
 _DEPS = utils.h
 DEPS = $(patsubst %,$(INCLUDE_DIR)/%,$(_DEPS))
 
-_OBJECTS = command.o print_dialogues.o process.o prompt.o 
+_OBJECTS = command.o history.o init.o print_dialogues.o process.o prompt.o 
 OBJECTS = $(patsubst %,$(OBJECT_DIR)/%,$(_OBJECTS))
 
 sr-shell: $(OBJECTS) main.o
@@ -23,4 +23,4 @@ $(OBJECT_DIR)/%.o: $(MODULE_DIR)/%.c $(DEPS)
 .PHONY: clean
 
 clean:
-	rm -rf $(OBJECT_DIR)/*.o *~ core $(INCLUDE_DIR)/*~
+	rm -rf $(OBJECT_DIR)/*.o *~ core $(INCLUDE_DIR)/*~ main.o
