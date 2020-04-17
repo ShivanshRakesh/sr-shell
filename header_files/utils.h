@@ -17,5 +17,6 @@
 
 #define CLRSCR() printf("\033[H\033[J")
 #define NEWLINE() printf("\n")
+#define JAB_TAK_HAI_JAAN while(1)
 
 #endif
