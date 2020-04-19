@@ -4,6 +4,6 @@
 #define MAX_CMD_LEN 1024
 
 char *get_command(void);
-void get_and_parse_command(char **);
+void parse_command(char *, char **);
 
 #endif

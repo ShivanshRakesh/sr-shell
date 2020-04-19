@@ -21,17 +21,15 @@ char *get_command(void)
     if (input[strlen(input) - 1] == '\n')
         input[strlen(input) - 1] = 0;
 
-    store_cmd_in_history(input);
-
     return input;
 }
 
-void get_and_parse_command(char **command_args)
+void parse_command(char *command, char **command_args)
 {
     char *parsed, *delim = " \n";
     int indx = 0;
 
-    parsed = strtok(get_command(), delim);
+    parsed = strtok(command, delim);
     while (parsed != NULL)
     {
         command_args[indx++] = parsed;
