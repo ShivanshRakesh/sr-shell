@@ -2,7 +2,7 @@ MODULE_DIR = modules
 INCLUDE_DIR = header_files
 OBJECT_DIR = modules
 CC = gcc 
-CFLAGS = -Wall -I$(INCLUDE_DIR)
+CFLAGS = -Wall -I$(INCLUDE_DIR) -g
 
 _DEPS = utils.h
 DEPS = $(patsubst %,$(INCLUDE_DIR)/%,$(_DEPS))
