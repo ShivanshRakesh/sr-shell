@@ -19,6 +19,12 @@
 
 #define CLRSCR() printf("\033[H\033[J")
 #define NEWLINE() printf("\n")
-#define JAB_TAK_HAI_JAAN while(1)   // Language:Hindi; Alternative for:'Until Dead'; #justForFun
+#define JAB_TAK_HAI_JAAN while (1) // Language:Hindi; Alternative for:'Until Dead'; #justForFun
+
+#define UP_ARROW_CODE 65
+#define DOWN_ARROW_CODE 66
+#define RIGHT_ARROW_CODE 67
+#define LEFT_ARROW_CODE 68
+short is_arrow_key(char *);
 
 #endif
