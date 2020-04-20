@@ -14,7 +14,7 @@ void store_cmd_in_history(char *command)
 {
     if (command[strlen(command) - 1] == '\n')
         command[strlen(command) - 1] = 0;
-    FILE *hist_file = fopen(hist_file_loc, "a+");
+    FILE *hist_file = fopen(get_history_file_loc(), "a+");
     fprintf(hist_file, "%s\n", command);
     fclose(hist_file);
 }
@@ -23,7 +23,7 @@ void show_history(void)
 {
     int hist_num = 1;
     char line[MAX_CMD_LEN];
-    FILE *hist_file = fopen(hist_file_loc, "r");
+    FILE *hist_file = fopen(get_history_file_loc(), "r");
     while (fgets(line, MAX_CMD_LEN, hist_file) != NULL)
     {
         printf("%3d %s", hist_num++, line);
@@ -33,13 +33,13 @@ void show_history(void)
 
 void clean_history(void)
 {
-    FILE *hist_file = fopen(hist_file_loc, "w");
+    FILE *hist_file = fopen(get_history_file_loc(), "w");
     fclose(hist_file);
 }
 
 void recall_from_history(char line[], short num)
 {
-    FILE *hist_file = fopen(hist_file_loc, "r");
+    FILE *hist_file = fopen(get_history_file_loc(), "r");
     short line_cnt = 0, pos_in_file;
 
     if (!fseek(hist_file, 0, SEEK_END))

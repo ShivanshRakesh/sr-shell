@@ -10,6 +10,7 @@
 #include <string.h>
 #include <signal.h>
 
+#include <custom_aliases.h>
 #include <builtins.h>
 #include <command.h>
 #include <history.h>
