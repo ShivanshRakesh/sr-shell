@@ -26,7 +26,7 @@ short at_latest;
 short history_mode;
 
 char *get_history_file_loc(void);
-void store_cmd_in_history(char *command);
+void store_cmd_in_history(char *);
 void show_history(void);
 void clean_history(void);
 void recall_from_history(char *, short);

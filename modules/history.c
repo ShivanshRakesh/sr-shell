@@ -2,8 +2,9 @@
 
 char *get_history_file_loc(void)
 {
-    char *history_file_loc;
-    history_file_loc = home_dir;
+    char *history_file_loc, home_dir_tmp[1024];
+    strcpy(home_dir_tmp, getenv("HOME"));
+    history_file_loc = home_dir_tmp;
     strcat(history_file_loc, "/");
     strcat(history_file_loc, HISTORY_FILENAME);
     return history_file_loc;

@@ -10,6 +10,7 @@
 #include <string.h>
 #include <signal.h>
 
+#include <builtins.h>
 #include <command.h>
 #include <history.h>
 #include <init.h>

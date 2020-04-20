@@ -2,33 +2,36 @@
 
 void fork_and_execute(char **command_args)
 {
-    signal(SIGINT, SIG_IGN);    // TO IGNORE THE CTRL+C IN PARENT SHELL PROCESS
+    signal(SIGINT, SIG_IGN); // TO IGNORE THE CTRL+C IN PARENT SHELL PROCESS
 
-    int stat_loc, status;
-    pid_t child_pid;
-
-    child_pid = fork();
-
-    if (child_pid == 0)
+    if (!is_builtin(command_args))
     {
-        signal(SIGINT, SIG_DFL);    // RESTORE THE FUNCTIONALITY OF CTRL+C IN CHILD PROCESS
-        status = execvp(command_args[0], command_args);
-        if (status < 0)
+        int stat_loc, status;
+        pid_t child_pid;
+
+        child_pid = fork();
+
+        if (child_pid == 0)
         {
-            perror(command_args[0]);
-            exit(1);
+            signal(SIGINT, SIG_DFL); // RESTORE THE FUNCTIONALITY OF CTRL+C IN CHILD PROCESS
+            status = execvp(command_args[0], command_args);
+            if (status < 0)
+            {
+                perror(command_args[0]);
+                exit(1);
+            }
         }
-    }
-    else
-    {
-        waitpid(child_pid, &stat_loc, WUNTRACED);
-        // if (WIFEXITED(stat_loc) && WEXITSTATUS(stat_loc) == 0){
-        //     printf("Process exited normally.");
-        // }
+        else
+        {
+            waitpid(child_pid, &stat_loc, WUNTRACED);
+            // if (WIFEXITED(stat_loc) && WEXITSTATUS(stat_loc) == 0){
+            //     printf("Process exited normally.");
+            // }
 
-        if (WIFSIGNALED(stat_loc))
-            NEWLINE();
-        // printf("\nSignal encountered: %d\n", WTERMSIG(stat_loc));
+            if (WIFSIGNALED(stat_loc))
+                NEWLINE();
+            // printf("\nSignal encountered: %d\n", WTERMSIG(stat_loc));
+        }
     }
 }
 
