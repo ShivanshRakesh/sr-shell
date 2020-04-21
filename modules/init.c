@@ -13,7 +13,8 @@ void init(void)
     down_arrow = 0;
     history_mode = 0;
 
-    add_alias("bye", "quit");
+    fopen(get_rc_file_loc(), "a+");
+    source_util(get_rc_file_loc());
 
     // CLRSCR();
     // display_init_dialogue();

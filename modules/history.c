@@ -119,12 +119,7 @@ void recall_from_history_util(char **command_args)
 
         case RIGHT_ARROW_CODE: // EXECUTE THE RECALLED COMMAND
             recall_from_history(recall_res, up_arrow - down_arrow);
-            store_cmd_in_history(recall_res);
-            parse_command(recall_res, command_args);
-            if (strcmp(command_args[0], "history") == 0)
-                show_history();
-            else
-                fork_and_execute(command_args);
+            fork_and_execute_helper(recall_res, command_args);
             history_mode = 0;
             up_arrow = 0;
             down_arrow = 0;

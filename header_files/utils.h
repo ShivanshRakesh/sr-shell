@@ -18,6 +18,7 @@
 #include <print_dialogues.h>
 #include <process.h>
 #include <prompt.h>
+#include <source.h>
 
 #define CLRSCR() printf("\033[H\033[J")
 #define NEWLINE() printf("\n")
