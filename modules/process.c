@@ -34,14 +34,8 @@ void fork_and_execute(char **command_args)
     }
 }
 
-void interact_util(void)
+void fork_and_execute_helper(char *command, char **command_args)
 {
-    if (!history_mode)
-        show_prompt();
-
-    char **command_args = malloc(_SC_NL_ARGMAX * sizeof(char *));
-    char *command = get_command();
-
     // CREATING A COPY OF INPUT COMMAND TO STORE IN HISTORY
     // SINCE COMMAND WOULD GET CHANGED ON PARSING (by strtok)
     char command_cpy[_SC_NL_ARGMAX];
@@ -75,7 +69,7 @@ void interact_util(void)
     else if (strcmp(command_args[0], "alias") == 0)
     {
         store_cmd_in_history(command_cpy);
-        
+
         char *parsed;
         parsed = strtok(command_cpy, " \n");
         parsed = strtok(NULL, "\n");
@@ -83,8 +77,8 @@ void interact_util(void)
         command_args[1] = parsed;
         parsed = strtok(NULL, "\"");
         command_args[2] = parsed;
-        
-        if(command_args[1] && command_args[2])
+
+        if (command_args[1] && command_args[2])
             add_alias(command_args[1], command_args[2], 1);
         else
             printf("alias: there was some problem registering this alias\n");
@@ -96,6 +90,17 @@ void interact_util(void)
         store_cmd_in_history(command_cpy);
         fork_and_execute(command_args);
     }
+}
+
+void interact_util(void)
+{
+    if (!history_mode)
+        show_prompt();
+
+    char **command_args = malloc(_SC_NL_ARGMAX * sizeof(char *));
+    char *command = get_command();
+
+    fork_and_execute_helper(command, command_args);
 
     NEWLINE();
     free(command_args);
