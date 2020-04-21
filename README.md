@@ -3,16 +3,8 @@ A linux shell written in C.
 
 _The SR in SR-SHELL comes from the initials of my name, just if you were curious._
 
-## Build Instructions
-Building the shell is simple.
-* Clone the repository.
-* `cd` into the project-directory.
-* Run `make` to build the shell.
-* Run `./sr-shell` to start (and be welcomed by) the shell.
-* Run `make clean` to get rid of the object files created.
-
 ## Shell Preview
-![](/shell-demo.gif)
+![](shell-demo.gif)
 
 ## Highlights
 
@@ -33,6 +25,14 @@ Building the shell is simple.
 * Also, it displays the git branch if the directory is a git repository.
 
 *A demo of the entire thing is covered in the screen-recorded GIF above.*
+
+## Build Instructions
+Building the shell is simple.
+* Clone the repository.
+* `cd` into the project-directory.
+* Run `make` to build the shell.
+* Run `./sr-shell` to start (and be welcomed by) the shell.
+* Run `make clean` to get rid of the object files created.
 
 ## Features
 
@@ -66,4 +66,4 @@ Building the shell is simple.
 * [Shivansh Rakesh](https://github.com/shivanshrakesh)
 
 ## Contribution
-Every small bit of contribution is welcomed. Just make sure to open a issue describing the bug / improvement / suggestion / etc. before commencing work.
+Every small bit of contribution is welcomed. Just make sure to open a issue describing the bug/improvement/suggestion/etc. before commencing work.
