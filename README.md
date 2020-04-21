@@ -11,6 +11,9 @@ Building the shell is simple.
 * Run `./sr-shell` to start (and be welcomed by) the shell.
 * Run `make clean` to get rid of the object files created.
 
+## Shell Preview
+![](/shell-demo.gif)
+
 ## Highlights
 
 ### History Recall
