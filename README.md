@@ -1,8 +1,6 @@
 # SR-SHELL
 A linux shell written in C.
 
-_The SR in SR-SHELL comes from the initials of my name, just if you were curious._
-
 ## Shell Preview
 ![](shell-demo.gif)
 
@@ -64,6 +62,7 @@ Building the shell is simple.
 
 ## Author
 * [Shivansh Rakesh](https://github.com/shivanshrakesh)
+_The SR in SR-SHELL comes from the initials of my name, just if you were curious._
 
 ## Contribution
 Every small bit of contribution is welcomed. Just make sure to open a issue describing the bug/improvement/suggestion/etc. before commencing work.
