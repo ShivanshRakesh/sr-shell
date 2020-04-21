@@ -17,6 +17,7 @@
 #include <custom_aliases.h>
 #include <history.h>
 #include <init.h>
+#include <pipe.h>
 #include <print_dialogues.h>
 #include <process.h>
 #include <prompt.h>

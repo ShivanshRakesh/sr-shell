@@ -5,18 +5,29 @@ void fork_and_execute(char **command_args)
     signal(SIGINT, SIG_IGN); // TO IGNORE THE CTRL+C IN PARENT SHELL PROCESS
     if (!is_builtin(command_args))
     {
-        int stat_loc, status;
-        pid_t child_pid;
+        int stat_loc, status, file_descr[2];
+        int pipe_indx = check_for_pipe(command_args);
 
+        pid_t child_pid, pipe_child_pid;
+        if (pipe_indx)
+            pipe(file_descr);
         child_pid = fork();
 
-        if (child_pid == 0)
+        if (child_pid == 0) // CHILD PROCESS
         {
             signal(SIGINT, SIG_DFL); // RESTORE THE FUNCTIONALITY OF CTRL+C IN CHILD PROCESS
 
+            // IF PIPE PRESENT, USE THE PIPED FILE DESCRIPTOR
+            if (pipe_indx)
+            {
+                dup2(file_descr[0], 0);
+                close(file_descr[0]);
+                close(file_descr[1]);
+            }
+
             // INPUT REDIRECTION
             char *input_filename = (char *)malloc(MAX_CMD_LEN * sizeof(char));
-            if (check_for_input_redir(command_args, input_filename))
+            if (check_for_input_redir(&command_args[pipe_indx], input_filename))
             {
                 int in_fd = open(input_filename, O_RDONLY);
                 dup2(in_fd, 0);
@@ -25,22 +36,40 @@ void fork_and_execute(char **command_args)
 
             // OUTPUT REDIRECTION
             char *output_filename = (char *)malloc(MAX_CMD_LEN * sizeof(char));
-            if (check_for_output_redir(command_args, output_filename))
+            if (check_for_output_redir(&command_args[pipe_indx], output_filename))
             {
                 int out_fd = open(output_filename, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
                 dup2(out_fd, 1);
                 close(out_fd);
             }
 
-            status = execvp(command_args[0], command_args);
+            status = execvp(command_args[pipe_indx], &command_args[pipe_indx]);
             if (status < 0)
             {
-                perror(command_args[0]);
+                perror(command_args[pipe_indx]);
                 exit(1);
             }
         }
-        else
+
+        else // PARENT PROCESS
         {
+            if (pipe_indx)
+            {
+                // CREATING A FORK FOR THE OTHER HALF OF PIPE
+                pipe_child_pid = fork();
+                if (pipe_child_pid == 0)
+                {
+                    dup2(file_descr[1], 1);
+                    close(file_descr[0]);
+                    close(file_descr[1]);
+                    execvp(command_args[0], command_args);
+                }
+                else{
+                    close(file_descr[0]);
+                    close(file_descr[1]);
+                }
+            }
+
             waitpid(child_pid, &stat_loc, WUNTRACED);
             // if (WIFEXITED(stat_loc) && WEXITSTATUS(stat_loc) == 0){
             //     printf("Process exited normally.");

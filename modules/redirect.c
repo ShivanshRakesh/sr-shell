@@ -27,7 +27,7 @@ short check_for_output_redir(char **command_args, char *output_file)
 {
     for (int itr1 = 0; command_args[itr1] != NULL; itr1++)
     {
-        if (strcmp(command_args[itr1], ">") == 0)
+        if (command_args[itr1][0] == '>')
         {
             if (command_args[itr1 + 1] != NULL)
                 strcpy(output_file, command_args[itr1 + 1]);

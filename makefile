@@ -7,7 +7,7 @@ CFLAGS = -Wall -I$(INCLUDE_DIR) -g
 _DEPS = utils.h
 DEPS = $(patsubst %,$(INCLUDE_DIR)/%,$(_DEPS))
 
-_OBJECTS = builtins.o command.o custom_aliases.o history.o init.o print_dialogues.o process.o prompt.o redirect.o source.o utils.o
+_OBJECTS = builtins.o command.o custom_aliases.o history.o init.o pipe.o print_dialogues.o process.o prompt.o redirect.o source.o utils.o
 OBJECTS = $(patsubst %,$(OBJECT_DIR)/%,$(_OBJECTS))
 
 sr-shell: $(OBJECTS) main.o
