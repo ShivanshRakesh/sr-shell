@@ -59,7 +59,7 @@ Building the shell is simple.
 * Support for `~` as a substitute for `HOME`.
 * Combination of commands using `&&`.
 
-## Author(s)
+## Author
 * [Shivansh Rakesh](https://github.com/shivanshrakesh)
 
 ## Contribution
