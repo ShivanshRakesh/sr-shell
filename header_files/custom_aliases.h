@@ -1,5 +1,5 @@
-#ifndef ALIASES_H_
-#define ALIASES_H_
+#ifndef CUSTOM_ALIASES_H_
+#define CUSTOM_ALIASES_H_
 
 #define MAX_NUM_ALIASES 50
 
