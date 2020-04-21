@@ -62,6 +62,7 @@ Building the shell is simple.
 
 ## Author
 * [Shivansh Rakesh](https://github.com/shivanshrakesh)
+
 _The SR in SR-SHELL comes from the initials of my name, just if you were curious._
 
 ## Contribution
