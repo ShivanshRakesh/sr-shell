@@ -1,23 +1,26 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
+#include <fcntl.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <string.h>
+#include <sys/ioctl.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/ioctl.h>
-#include <string.h>
-#include <signal.h>
+#include <unistd.h>
 
-#include <custom_aliases.h>
 #include <builtins.h>
 #include <command.h>
+#include <custom_aliases.h>
 #include <history.h>
 #include <init.h>
 #include <print_dialogues.h>
 #include <process.h>
 #include <prompt.h>
+#include <redirect.h>
 #include <source.h>
 
 #define CLRSCR() printf("\033[H\033[J")

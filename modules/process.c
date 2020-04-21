@@ -13,6 +13,25 @@ void fork_and_execute(char **command_args)
         if (child_pid == 0)
         {
             signal(SIGINT, SIG_DFL); // RESTORE THE FUNCTIONALITY OF CTRL+C IN CHILD PROCESS
+
+            // INPUT REDIRECTION
+            char *input_filename = (char *)malloc(MAX_CMD_LEN * sizeof(char));
+            if (check_for_input_redir(command_args, input_filename))
+            {
+                int in_fd = open(input_filename, O_RDONLY);
+                dup2(in_fd, 0);
+                close(in_fd);
+            }
+
+            // OUTPUT REDIRECTION
+            char *output_filename = (char *)malloc(MAX_CMD_LEN * sizeof(char));
+            if (check_for_output_redir(command_args, output_filename))
+            {
+                int out_fd = open(output_filename, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
+                dup2(out_fd, 1);
+                close(out_fd);
+            }
+
             status = execvp(command_args[0], command_args);
             if (status < 0)
             {

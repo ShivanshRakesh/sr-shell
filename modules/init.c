@@ -13,6 +13,7 @@ void init(void)
     down_arrow = 0;
     history_mode = 0;
 
+    // SOURCING THE SRSHELL_RC FILE
     fopen(get_rc_file_loc(), "a+");
     source_util(get_rc_file_loc());
 
