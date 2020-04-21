@@ -7,7 +7,7 @@ int num_aliases;
 char **alias_list;
 char **alias_map;
 
-char *is_alias(char **);
-void add_alias(char *, char *);
+void substitute_if_alias(char **);
+void add_alias(char *, char *, short);
 
 #endif

@@ -3,7 +3,6 @@
 void fork_and_execute(char **command_args)
 {
     signal(SIGINT, SIG_IGN); // TO IGNORE THE CTRL+C IN PARENT SHELL PROCESS
-
     if (!is_builtin(command_args))
     {
         int stat_loc, status;
@@ -49,6 +48,7 @@ void interact_util(void)
     strcpy(command_cpy, command);
 
     parse_command(command, command_args);
+    substitute_if_alias(command_args);
 
     // EITHER IN RECALLING FROM HISTORY OR AN EMPTY COMMAND
     if (command_args[0] == NULL)
@@ -69,6 +69,25 @@ void interact_util(void)
             clean_history();
         else
             show_history();
+    }
+
+    // TAKE NECESSARY STEPS IN CASE OF ALIAS COMMAND
+    else if (strcmp(command_args[0], "alias") == 0)
+    {
+        store_cmd_in_history(command_cpy);
+        
+        char *parsed;
+        parsed = strtok(command_cpy, " \n");
+        parsed = strtok(NULL, "\n");
+        parsed = strtok(parsed, "=");
+        command_args[1] = parsed;
+        parsed = strtok(NULL, "\"");
+        command_args[2] = parsed;
+        
+        if(command_args[1] && command_args[2])
+            add_alias(command_args[1], command_args[2], 1);
+        else
+            printf("alias: there was some problem registering this alias\n");
     }
 
     // FORK AND EXECUTE COMMAND
