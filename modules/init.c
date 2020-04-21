@@ -17,6 +17,6 @@ void init(void)
     fopen(get_rc_file_loc(), "a+");
     source_util(get_rc_file_loc());
 
-    // CLRSCR();
-    // display_init_dialogue();
+    CLRSCR();
+    display_init_dialogue();
 }

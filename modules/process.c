@@ -132,6 +132,16 @@ void fork_and_execute_helper(char *command, char **command_args)
             printf("alias: there was some problem registering this alias\n");
     }
 
+    else if (strcmp(command_args[0], "source") == 0)
+    {
+        store_cmd_in_history(command_cpy);
+
+        if (command_args[1])
+            source_util(command_args[1]);
+        else
+            printf("source: need some valid file as an argument\n");
+    }
+
     // FORK AND EXECUTE COMMAND
     else
     {
