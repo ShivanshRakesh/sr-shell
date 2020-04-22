@@ -64,7 +64,8 @@ void fork_and_execute(char **command_args)
                     close(file_descr[1]);
                     execvp(command_args[0], command_args);
                 }
-                else{
+                else
+                {
                     close(file_descr[0]);
                     close(file_descr[1]);
                 }
@@ -146,6 +147,14 @@ void fork_and_execute_helper(char *command, char **command_args)
     else
     {
         store_cmd_in_history(command_cpy);
+        if (strcmp(command_args[0], "ls") == 0){
+            int i;
+            for(i = 0; command_args[i] != NULL; i++);
+            char *tmp = (char *)malloc(15*sizeof(char));
+            strcpy(tmp, "--color=tty");
+            command_args[i++] = tmp;
+            command_args[i] = NULL;
+        }
         fork_and_execute(command_args);
     }
 }
