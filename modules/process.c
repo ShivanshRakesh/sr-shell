@@ -151,7 +151,7 @@ void fork_and_execute_helper(char *command, char **command_args)
             int i;
             for(i = 0; command_args[i] != NULL; i++);
             char *tmp = (char *)malloc(15*sizeof(char));
-            strcpy(tmp, "--color=tty");
+            strcpy(tmp, "--color=auto");
             command_args[i++] = tmp;
             command_args[i] = NULL;
         }
