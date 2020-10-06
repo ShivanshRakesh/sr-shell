@@ -51,11 +51,10 @@ Building the shell is simple.
 
 ### Yet to be done:
 * Builtin commands (*just to list some*):
-  * fg
-  * bg
-  * jobs
-  * cronjob
-  * `MORE-TO-BE-ADDED`
+  - [ ] fg
+  - [ ] bg
+  - [ ] jobs
+  - [ ] cronjob
 * Multiple piping.
 * Support for `~` as a substitute for `HOME`.
 * Combination of commands using `&&`.
